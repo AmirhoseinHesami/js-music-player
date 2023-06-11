@@ -136,3 +136,69 @@ progressContainer.addEventListener("click", function (e) {
     playPauseBtn.innerHTML = "||";
   }
 });
+
+shuffle.addEventListener("click", function () {
+  if (songs.length <= 1) return;
+
+  let newSong = randomNumber(0, songs.length - 1);
+
+  while (newSong === currentSong) {
+    newSong = randomNumber(0, songs.length - 1);
+  }
+
+  // TODO - FIXME : shuffle songs after the current one ends
+  currentSong = newSong;
+  // console.log(currentSong);
+  changeSong();
+});
+
+repeat.addEventListener("click", function () {
+  if (!newAudio.hasAttribute("loop")) {
+    newAudio.setAttribute("loop", "");
+    repeat.classList.add("active");
+  } else {
+    newAudio.removeAttribute("loop");
+    repeat.classList.remove("active");
+  }
+});
+
+nightMode.addEventListener("click", function () {
+  if (document.body.className !== "dark") {
+    document.body.classList.add("dark");
+    nightMode.innerHTML = "🌞";
+  } else {
+    document.body.classList.remove("dark");
+    nightMode.innerHTML = "🌙";
+  }
+});
+
+// keyboard functionality
+body.addEventListener("keyup", function (e) {
+  if (e.key == " " || e.code == "Space") playPuaseFunctionality();
+  else if (e.keyCode == "39" && songs.length > 1) nextSong();
+  else if (e.keyCode == "37") backToPreviousSong();
+  e.preventDefault();
+});
+
+removeBtn.addEventListener("click", function () {
+  songs.splice(currentSong, 1);
+
+  if (songs.length <= 0) {
+    newAudio.pause();
+    playPauseBtn.innerHTML = "▶";
+    current.innerHTML = ``;
+    newAudio.src = "";
+    music.innerHTML = `...`;
+    removeBtn.classList.remove("open");
+    endTime.innerHTML = `00:00`;
+    progress.style.width = 0;
+    firstLoad = true;
+
+    return;
+  }
+
+  if (currentSong == songs.length) currentSong = songs.length - 1;
+
+  changeSong();
+  current.innerHTML = `${currentSong + 1} / ${songs.length}`;
+});

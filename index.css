@@ -319,6 +319,7 @@ body.dark {
   display: none;
   background: white;
   font-size: 17px;
+  border: none;
   margin: 0;
   padding: 2px;
   cursor: pointer;
