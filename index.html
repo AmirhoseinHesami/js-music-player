@@ -12,6 +12,44 @@
 
 <body>
 
+  <div class="file-input">
+    <input type="file" id="fileInput" class="file" accept="audio/*" multiple>
+    <label for="file">
+      Select file
+    </label>
+  </div>
+
+  <div class="main">
+    <div class="up">
+      <span class="current"></span>
+      <button class="remove">❌</button>
+      <button id="shuffle" title="Random play mode">🔀</button>
+    </div>
+    <div class="secondary">
+      <h2>
+        Music: <span id="music">...</span>
+      </h2>
+    </div>
+    <div class="secondary">
+      <button id="previous" title="Previous"></button>
+      <button id="play-pause" title="Play - Pause">▶</button>
+      <button id="next" title="Next"></button>
+      <div class="slidecontainer">
+        <input id="volume" class="slider" type="range" min="0" max="1" value="0.5" step="0.1">
+      </div>
+      <div class="extra">
+        <p>Volume: <span id="demo">50</span></p>
+        <button id="repeat" title="Loop mode">🔁</button>
+      </div>
+      <div class="progress-container">
+        <div class="progress"></div>
+      </div>
+      <p id="end-time">00:00</p>
+    </div>
+  </div>
+
+  <span class="night-mode">🌙</span>
+
 </body>
 
 <script src="./app.js"></script>
