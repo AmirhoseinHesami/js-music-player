@@ -104,9 +104,8 @@ previousBtn.addEventListener("click", function () {
 });
 
 volumeValue.addEventListener("input", function () {
-  const volume = Math.trunc(this.value);
-  newAudio.volume = volume;
-  demo.innerHTML = volume * 100;
+  newAudio.volume = this.value;
+  demo.innerHTML = Math.trunc(this.value * 100);
 });
 
 newAudio.addEventListener("timeupdate", function () {
